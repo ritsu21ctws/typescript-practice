@@ -1,13 +1,6 @@
 import React, { memo, useState } from "react";
-import { Box, Button, Flex, Heading, Link } from "@chakra-ui/react";
-import {
-  DrawerBackdrop,
-  DrawerBody,
-  DrawerContent,
-  DrawerRoot,
-  DrawerTrigger,
-} from "@/components/ui/drawer"
-import { MenuIconButton } from "@/components/atoms/button/MenuIconButton";
+import { Box, Flex, Heading, Link } from "@chakra-ui/react";
+import { MenuDrawer } from "@/components/molecules/MenuDrawer";
 
 export const Header: React.FC = memo(() => {
   const [ open, setOpen ] = useState(false);
@@ -33,19 +26,7 @@ export const Header: React.FC = memo(() => {
           </Box>
             <Link color="gray.50">設定</Link>
         </Flex>
-        <DrawerRoot placement="start" size="xs" open={open} onOpenChange={(e) => setOpen(e.open)}>
-          <DrawerBackdrop />
-          <DrawerTrigger asChild>
-            <MenuIconButton/>
-          </DrawerTrigger>
-          <DrawerContent>
-            <DrawerBody p={0} bg="gray.100">
-              <Button w="100%" bg="gray.100" color="gray.800">TOP</Button>
-              <Button w="100%" bg="gray.100" color="gray.800">ユーザー一覧</Button>
-              <Button w="100%" bg="gray.100" color="gray.800">設定</Button>
-            </DrawerBody>
-          </DrawerContent>
-        </DrawerRoot>
+        <MenuDrawer open={open} setOpen={setOpen} />
       </Flex>
     </>
   );
