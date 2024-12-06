@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { Button } from "@chakra-ui/react";
+import { Button, DrawerActionTrigger } from "@chakra-ui/react";
 import {
   DrawerBackdrop,
   DrawerBody,
@@ -12,10 +12,13 @@ import { MenuIconButton } from "@/components/atoms/button/MenuIconButton";
 type Props = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  onClickHome: () => void;
+  onClickUserManagement: () => void;
+  onClickSetting: () => void;
 }
 
 export const MenuDrawer: React.FC<Props> = memo((props) => {
-  const { open, setOpen } = props;
+  const { open, setOpen, onClickHome, onClickUserManagement, onClickSetting } = props;
   return (
     <DrawerRoot placement="start" size="xs" open={open} onOpenChange={(e) => setOpen(e.open)}>
       <DrawerBackdrop />
@@ -24,9 +27,15 @@ export const MenuDrawer: React.FC<Props> = memo((props) => {
       </DrawerTrigger>
       <DrawerContent>
         <DrawerBody p={0} bg="gray.100">
-          <Button w="100%" bg="gray.100" color="gray.800">TOP</Button>
-          <Button w="100%" bg="gray.100" color="gray.800">ユーザー一覧</Button>
-          <Button w="100%" bg="gray.100" color="gray.800">設定</Button>
+          <DrawerActionTrigger asChild>
+            <Button w="100%" bg="gray.100" color="gray.800" onClick={onClickHome}>TOP</Button>
+          </DrawerActionTrigger>
+          <DrawerActionTrigger asChild>
+            <Button w="100%" bg="gray.100" color="gray.800" onClick={onClickUserManagement}>ユーザー一覧</Button>
+          </DrawerActionTrigger>
+          <DrawerActionTrigger asChild>
+            <Button w="100%" bg="gray.100" color="gray.800" onClick={onClickSetting}>設定</Button>
+          </DrawerActionTrigger>
         </DrawerBody>
       </DrawerContent>
     </DrawerRoot>
