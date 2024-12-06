@@ -1,18 +1,13 @@
-import { Box, Button, Flex, Heading, IconButton, Link } from "@chakra-ui/react";
+import React, { memo, useState } from "react";
+import { Box, Button, Flex, Heading, Link } from "@chakra-ui/react";
 import {
-  DrawerActionTrigger,
   DrawerBackdrop,
   DrawerBody,
-  DrawerCloseTrigger,
   DrawerContent,
-  DrawerFooter,
-  DrawerHeader,
   DrawerRoot,
-  DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer"
-import React, { memo, useState } from "react";
-import { RxHamburgerMenu } from "react-icons/rx";
+import { MenuIconButton } from "@/components/atoms/button/MenuIconButton";
 
 export const Header: React.FC = memo(() => {
   const [ open, setOpen ] = useState(false);
@@ -41,14 +36,7 @@ export const Header: React.FC = memo(() => {
         <DrawerRoot placement="start" size="xs" open={open} onOpenChange={(e) => setOpen(e.open)}>
           <DrawerBackdrop />
           <DrawerTrigger asChild>
-            <IconButton
-              aria-label="メニューボタン"
-              size="sm"
-              bg="teal.500"
-              display={{ base: "block", md: "none"}}
-            >
-              <RxHamburgerMenu />
-            </IconButton>
+            <MenuIconButton/>
           </DrawerTrigger>
           <DrawerContent>
             <DrawerBody p={0} bg="gray.100">
