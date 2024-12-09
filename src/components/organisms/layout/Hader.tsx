@@ -5,7 +5,7 @@ import { MenuDrawer } from "@/components/molecules/MenuDrawer";
 
 export const Header: React.FC = memo(() => {
   const [ open, setOpen ] = useState(false);
-  const navigate = useNavigate ();
+  const navigate = useNavigate();
 
   const onClickHome = useCallback(() => navigate('/home'), []);
   const onClickUserManagement = useCallback(() => navigate('/home/user_management'), []);
