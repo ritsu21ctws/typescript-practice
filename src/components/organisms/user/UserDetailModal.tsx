@@ -22,6 +22,7 @@ export const UserDetailModal: React.FC<Props> = memo((props) => {
         open={open}
         onOpenChange={(e) => setOpen(e.open)}
         motionPreset="slide-in-bottom"
+        trapFocus={false}
       >
       <DialogContent pb={6}>
         <DialogHeader>
