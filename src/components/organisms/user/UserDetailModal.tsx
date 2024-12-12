@@ -9,14 +9,16 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { Field } from "@/components/ui/field";
+import { User } from "@/types/api/user";
 
 type Props = {
+  user: User | null;
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const UserDetailModal: React.FC<Props> = memo((props) => {
-  const { open, setOpen } = props;
+  const { user, open, setOpen } = props;
   return (
     <DialogRoot lazyMount
         open={open}
@@ -31,16 +33,16 @@ export const UserDetailModal: React.FC<Props> = memo((props) => {
         <DialogBody mx={4}>
           <Stack gap={4}>
             <Field label="名前">
-              <Input value="name" readOnly />
+              <Input value={user?.username} readOnly />
             </Field>
             <Field label="フルネーム">
-              <Input value="fullname" readOnly />
+              <Input value={user?.name} readOnly />
             </Field>
             <Field label="MAIL">
-              <Input value="mail" readOnly />
+              <Input value={user?.email} readOnly />
             </Field>
             <Field label="TEL">
-              <Input value="tel" readOnly />
+              <Input value={user?.phone} readOnly />
             </Field>
           </Stack>
         </DialogBody>

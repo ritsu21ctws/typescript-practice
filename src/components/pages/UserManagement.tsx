@@ -3,15 +3,18 @@ import { Center, Flex, HStack, Spinner } from "@chakra-ui/react";
 import { UserCard } from "@/components/organisms/user/UserCard";
 import { UserDetailModal } from "@/components/organisms/user/UserDetailModal";
 import { useAllUsers } from "@/hooks/useAllUsers";
-
+import { useSelectUser } from "@/hooks/useSelectUser";
 
 export const UserManagement: React.FC = memo(() => {
   const [open, setOpen] = useState(false);
   const { getUsers, loading, users } = useAllUsers();
+  const { onSelectUser, selectedUser } = useSelectUser();
 
   useEffect(() => getUsers(), []);
 
-  const onClickUser = useCallback(() => setOpen(true), []);
+  const onClickUser = useCallback((id: number) => {
+    onSelectUser({ id, users, setOpen });
+  }, [users, onSelectUser, setOpen]);
 
   return (
     <>
@@ -24,6 +27,7 @@ export const UserManagement: React.FC = memo(() => {
           { users.map((user) => (
             <Flex align='flex-start' key={user.id} mx="auto">
               <UserCard
+                id={user.id}
                 imageUrl="https://picsum.photos/200"
                 userName={user.username}
                 fullName={user.name}
@@ -33,7 +37,7 @@ export const UserManagement: React.FC = memo(() => {
           )) }
         </HStack>
       ) }
-      <UserDetailModal open={open} setOpen={setOpen} />
+      <UserDetailModal user={selectedUser} open={open} setOpen={setOpen} />
     </>
   );
 });
