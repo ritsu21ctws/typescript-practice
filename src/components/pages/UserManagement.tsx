@@ -39,7 +39,12 @@ export const UserManagement: React.FC = memo(() => {
           )) }
         </HStack>
       ) }
-      <UserDetailModal user={selectedUser} open={open} setOpen={setOpen} />
+      <UserDetailModal
+        user={selectedUser}
+        isAdmin={loginUser?.isAdmin}
+        open={open}
+        setOpen={setOpen}
+      />
     </>
   );
 });
