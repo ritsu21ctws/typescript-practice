@@ -21,11 +21,11 @@ export const UserDetailModal: React.FC<Props> = memo((props) => {
   const { user, open, setOpen } = props;
   return (
     <DialogRoot lazyMount
-        open={open}
-        onOpenChange={(e) => setOpen(e.open)}
-        motionPreset="slide-in-bottom"
-        trapFocus={false}
-      >
+      open={open}
+      onOpenChange={(e) => setOpen(e.open)}
+      motionPreset="slide-in-bottom"
+      trapFocus={false}
+    >
       <DialogContent pb={6}>
         <DialogHeader>
           <DialogTitle>ユーザー詳細</DialogTitle>
